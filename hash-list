@@ -1,0 +1,11 @@
+#!/bin/bash
+
+# if [[ -eq ]]
+mapfile files < <(find .)
+date=$(printf  '%(20%y-%m-%d)T\n')
+echo "" > hashes_$date.txt
+for f in ${files[@]}
+    do sha1sum "$f" >> hashes_$date.txt
+done
+
+
