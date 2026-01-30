@@ -21,7 +21,8 @@ def merge_files_to_single(dir_path: str, output_fname: str):
         print(fname)
         if not RE_IGNORE_PROG.findall(fname):
             if not os.path.isdir(fname):
-                lines.append('FILE: ' + fname + '\n')
+                st_mode = os.stat(fname).st_mode
+                lines.append('FILE: ' + fname +'\t' + str(st_mode) + '\n')
                 with open(fname, 'r') as f:
                     for line in f:
                         lines.append('          ' + line)
